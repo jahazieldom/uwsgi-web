@@ -90,7 +90,5 @@ if __name__ == '__main__':
     if port:
     	cmd += ["--port", port]
 
-    print(cmd)
-    # start socket server
     subprocess.call(cmd)
 
