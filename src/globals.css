@@ -1,0 +1,54 @@
+@import '~normalize.css/normalize.css';
+
+body{
+	background: #151515;
+	font-family: "Lucida Console", Monaco, monospace !important;
+	color: #d9d9d9;
+}
+a{
+	color: #d9d9d9;
+	text-decoration: none;
+}
+#app{
+	width: 95%;
+	margin: 10px auto;
+}
+.text-info{
+	color: #709cbc;
+}
+.text-active{
+	color: #34AA16;
+}
+
+table{
+	width: 100%;
+	border-collapse: collapse;
+}
+td,
+th{
+	padding: 3px;
+	text-align: left;
+	border-bottom: 1px dashed rgba(255,255,255,.1);
+	font-size: .8em;
+	font-weight: normal;
+}
+tr:hover td{
+	background-color: rgba(255,255,255,.1);
+}
+.table-title{
+	color: #fff;
+	text-align: center;
+	padding: 10px 3px;
+}
+.text-danger{
+	color: #E13429;
+}
+.text-left{
+	text-align: left;
+}
+.text-center{
+	text-align: center;
+}
+.text-right{
+	text-align: right;
+}

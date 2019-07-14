@@ -1,0 +1,26 @@
+
+/* style.scss */
+$black: #222;
+
+body{
+  background: #303030;
+  font-family: "Lucida Console", Monaco, monospace !important;
+  color: #fff;
+
+  .text-primary{
+    color: #34AA16;
+  }
+  
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+
+  td,
+  th{
+    padding: 3px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+  }
+}
