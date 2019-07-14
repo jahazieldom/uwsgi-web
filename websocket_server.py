@@ -17,17 +17,19 @@ USERS = set()
 def get_json_data(stats_sock):
     """Returns uwsgi stats data as dict from the socket file."""
     data_dict = {}
+    data = ""
     try:
         with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as s:
             s.connect(stats_sock)
             while True:
-                data = s.recv(4096)
-                if len(data) < 1:
+                d = s.recv(4096)
+                if len(d) < 1:
                     break
-                data_dict += data.decode("utf8", "ignore")
+                data += d.decode("utf8", "ignore")
             s.close()
-        data_dict = json.loads(data_dict)
+        data_dict = json.loads(data)
     except Exception as e:
+        print(e)
         pass
     return data_dict
 
@@ -76,7 +78,7 @@ async def command(websocket, path, *, stats=[]):
                     kill_pid(data["pid"])
                     await notify_state(stats=stats)
                 else:
-                    logging.error("unsupported event {}", data)
+                    logging.error("Unsupported event {}", data)
             time.sleep(0.5)
     except exceptions.ConnectionClosedOK as e:
         pass
@@ -130,8 +132,10 @@ def set_log_config(config):
     level = config.get("level")
     log_format = config.get("format")
     numeric_level = getattr(logging, level.upper(), None)
+
     if not isinstance(numeric_level, int):
-        raise ValueError('Invalid log level: %s' % level)
+        raise ValueError("Invalid log level: {}".format(level))
+
     logging.basicConfig(
         level=numeric_level,
         format=log_format,
